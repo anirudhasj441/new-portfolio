@@ -42,7 +42,7 @@
                   <q-icon name="img:/cv.webp" style="font-size: 1.5rem;"></q-icon>
                 </q-item-section>
                 <q-item-section>
-                  CV
+                  Resume
                 </q-item-section>
               </q-item>
               <q-item-label header class="text-h6">
