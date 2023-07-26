@@ -139,4 +139,6 @@ export default {
     this.getProfile();
   }
 }
+
+//new file
 </script>
