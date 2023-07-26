@@ -23,6 +23,7 @@ jobs:
       #       with:
       #         node-version: ${{ matrix.node-version }}
       #         cache: 'npm'
+      - run: git pull origin master
       - run: npm install
       - run: quasar build
       - run: rm -rf ~/new_portfolio/assets
