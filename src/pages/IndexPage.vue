@@ -36,13 +36,13 @@
                                 <div class=" flex items-center justify-between q-gutter-x-sm no-wrap">
                                     <div class="text-h6">{{ project.title }}</div>
                                     <q-space></q-space>
-                                    <a v-if="project.git_repo" :href="project.git_repo" class="me-2 project-link"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <q-icon name="img:/github.svg" style="font-size: 1.5rem;"></q-icon>
-                                    </a>
-                                    <a v-if="project.link" :href="project.link" class="me-2 project-link" target="_blank"
+                                    <a v-if="project.git_repo" :href="project.git_repo" class="project-link" target="_blank"
                                         rel="noopener noreferrer">
-                                        <q-icon name="bi-box-arrow-up-right"></q-icon>
+                                        <q-icon name="bi-github" style="font-size: 1.5rem;"></q-icon>
+                                    </a>
+                                    <a v-if="project.link" :href="project.link" class="project-link" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <q-icon name="bi-box-arrow-up-right" style="font-size: 1.5rem;"></q-icon>
                                     </a>
                                 </div>
                             </q-card-section>
@@ -193,3 +193,13 @@ export default {
 
 //new file
 </script>
+<style lang="scss">
+.project-link {
+    color: white;
+    transition: color 0.5s;
+
+    &:hover {
+        color: $primary;
+    }
+}
+</style>
