@@ -26,5 +26,5 @@ jobs:
       - run: git pull origin master
       - run: npm install
       - run: quasar build
-      - run: rm -rf ${{ secrets.DEPLOY_PATH }}/assets
-      - run: cp -r dist/spa/* ${{ secrets.DEPLOY_PATH }}/
+      - run: rm -rf ${{ vars.DEPLOY_PATH }}/assets
+      - run: cp -r dist/spa/* ${{ vars.DEPLOY_PATH }}/
