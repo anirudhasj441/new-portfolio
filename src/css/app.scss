@@ -1,9 +1,16 @@
 // app global css in SCSS form
 
 .q-drawer {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .q-card {
-  border-radius: 10px;
+    border-radius: 10px;
+}
+
+iframe {
+    display: block;
+    border-radius: 10px;
+    border: none;
+    outline: none;
 }

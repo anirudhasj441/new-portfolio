@@ -4,7 +4,7 @@
             <!-- <div class="q-mb-md">
             </div> -->
             <iframe v-if="resume != ''" :src="'/api' + resume" class="full-width" :style="style_store.getHeightStyle"
-                style="display: block;"></iframe>
+                style=""></iframe>
         </q-scroll-area>
     </q-page>
 </template>
