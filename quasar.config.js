@@ -94,8 +94,8 @@ module.exports = configure(function (/* ctx */) {
                 '/api': {
                     target: 'http://127.0.0.1:5000',
                     changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/api/, '')
-
+                    rewrite: (path) => path.replace(/^\/api/, ''),
+                    headers: "X-Frame-Options: ALLOW"
                 },
                 '/media': {
                     target: 'http://127.0.0.1:5000/media/',

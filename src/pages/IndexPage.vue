@@ -1,5 +1,5 @@
 <template>
-    <q-page class="q-pb-md" :style-fn="setHeight">
+    <q-page class="q-pb-md" :style-fn="style_store.setStyle">
         <q-scroll-area class="q-pr-md" :class="$q.platform.is.mobile ? 'q-pl-md' : ''" style="height: 100%;">
             <q-card flat class="full-width" style="border-radius: 10px;">
                 <q-card-section class="q-px-lg">
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 flex flex-center" :class="$q.platform.is.mobile ? 'order-first' : ''"
-                            :style="height_style">
+                            :style="style_store.getHeightStyle">
                             <q-img src="/banner_image.svg" style="width: 100%;" :ratio="1"></q-img>
                         </div>
                     </div>
@@ -123,6 +123,7 @@
     </q-page>
 </template>
 <script>
+import { styleFunction } from '../stores/global-store';
 export default {
     data() {
         return {
@@ -133,6 +134,7 @@ export default {
             database_skills: [],
             other_skills: [],
             projects: [],
+            style_store: styleFunction(),
             height_style: null
         }
     },

@@ -37,7 +37,7 @@
                                     Projects
                                 </q-item-section>
                             </q-item> -->
-                            <q-item clickable v-ripple class="">
+                            <q-item clickable v-ripple class="" to="/resume">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/cv.webp" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
