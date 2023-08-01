@@ -2,9 +2,9 @@
     <q-layout view="hHh lpr lFf">
         <q-header flat style="background-color: var(--dark-page);">
             <q-toolbar class="q-py-md">
-                <q-avtar>
+                <q-avatar>
                     <q-img src="/programmer.webp" style="width: 48px;" :ratio="1" />
-                </q-avtar>
+                </q-avatar>
                 <q-toolbar-title>
                     CodingDevil
                 </q-toolbar-title>
