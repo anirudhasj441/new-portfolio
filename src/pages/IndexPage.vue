@@ -1,7 +1,7 @@
 <template>
     <q-page class="q-pb-md" :style-fn="style_store.setStyle">
         <q-scroll-area class="q-pr-md" :class="$q.platform.is.mobile ? 'q-pl-md' : ''" style="height: 100%;">
-            <q-card flat class="full-width" style="border-radius: 10px;">
+            <q-card flat class="full-width intro" style="border-radius: 10px;">
                 <q-card-section class="q-px-lg">
                     <div class="row q-col-gutter-x-lg items-center">
                         <div class="col-xs-12 col-md-6 flex flex-center" :style="height_style">
@@ -26,7 +26,7 @@
                 <div class="text-h5 text-bold q-my-md q-mt-lg">Projects</div>
                 <div class="row q-col-gutter-md">
                     <div class="col-xs-6 col-md-3" v-for="project in projects" :key="project.skill">
-                        <q-card flat>
+                        <q-card flat clickable class="project-card">
                             <q-img :src="'/api' + project.img" style="width: 100%;" :ratio="16 / 9">
 
                             </q-img>
@@ -198,10 +198,19 @@ export default {
 <style lang="scss">
 .project-link {
     color: white;
-    transition: color 0.5s;
+    transition: color 0.3s;
 
     &:hover {
         color: $primary;
+    }
+}
+
+.q-card.project-card {
+    transition: transform 0.3s ease-in;
+
+    &:hover {
+        transform: translateY(-20px);
+        z-index: 999;
     }
 }
 </style>

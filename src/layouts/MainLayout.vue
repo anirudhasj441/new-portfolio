@@ -48,7 +48,8 @@
                             <q-item-label header class="text-h6">
                                 Social
                             </q-item-label>
-                            <q-item clickable v-ripple class="">
+                            <q-item clickable v-ripple class="" tag="a" href="https://www.instagram.com/anirudha2606/"
+                                target="_blank">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/insta.svg" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
@@ -56,7 +57,8 @@
                                     Instagram
                                 </q-item-section>
                             </q-item>
-                            <q-item clickable v-ripple class="">
+                            <q-item clickable v-ripple class="" tag="a" href="https://github.com/anirudhasj441"
+                                target="_blank">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/github.svg" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
@@ -64,7 +66,8 @@
                                     github
                                 </q-item-section>
                             </q-item>
-                            <q-item clickable v-ripple class="">
+                            <q-item clickable v-ripple class="" tag="a"
+                                href="https://www.youtube.com/channel/UCXYwCHwkharDOJkBzYz-jwg" target="_blank">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/youtube.svg" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
@@ -72,7 +75,8 @@
                                     YouTube
                                 </q-item-section>
                             </q-item>
-                            <q-item clickable v-ripple class="">
+                            <q-item clickable v-ripple class="" tag="a"
+                                href="https://www.linkedin.com/in/anirudha-jadhav-183572154/" target="_blank">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:linkedin.svg" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
