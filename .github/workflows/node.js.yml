@@ -9,22 +9,22 @@ on:
 
 jobs:
     build:
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
 
-        #     strategy:
-        #       matrix:
-        #         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        strategy:
+          matrix:
+            node-version: [18.x]
+            # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
         steps:
-            #       - uses: actions/checkout@v3
-            #     - name: Use Node.js ${{ matrix.node-version }}
-            #       uses: actions/setup-node@v3
-            #       with:
-            #         node-version: ${{ matrix.node-version }}
-            #         cache: 'npm'
-            - run: git pull origin master
-            - run: npm install
-            - run: quasar build -m pwa
-            - run: rm -rf ${{ vars.DEPLOY_PATH }}/assets
-            - run: cp -r dist/pwa/* ${{ vars.DEPLOY_PATH }}/
+        - uses: actions/checkout@v3
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+            cache: 'npm'
+        - run: npm install -g @quasar/cli
+        - run: npm install
+        - run: quasar build -m pwa
+#         - run: rm -rf ${{ vars.DEPLOY_PATH }}/assets
+#         - run: cp -r dist/pwa/* ${{ vars.DEPLOY_PATH }}/
