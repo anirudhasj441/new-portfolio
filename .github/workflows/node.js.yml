@@ -29,7 +29,8 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-        - run: cp -r dist/pwa {{GITHUB_WORKSPACE}}
+        - run: pwd
+        - run: ls
         - name: rsync deployments
           uses: burnett01/rsync-deployments@6.0.0
           with:
