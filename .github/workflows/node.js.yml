@@ -26,5 +26,18 @@ jobs:
         - run: npm install -g @quasar/cli
         - run: npm install
         - run: quasar build -m pwa
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - name: rsync deployments
+          uses: burnett01/rsync-deployments@6.0.0
+          with:
+            switches: -avzP --delete
+            path: dist/pwa
+            remote_path: /home/devil/new_portfolio
+            remote_host: ${{ secrets.DEPLOY_SERVER_HOST }}
+            remote_user: ${{ secrets.DEPLOY_USER }}
+            remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
 #         - run: rm -rf ${{ vars.DEPLOY_PATH }}/assets
 #         - run: cp -r dist/pwa/* ${{ vars.DEPLOY_PATH }}/
