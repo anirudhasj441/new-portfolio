@@ -25,8 +25,8 @@ jobs:
             cache: 'npm'
         - run: npm install -g @quasar/cli
         - run: npm install
-        - run: quasar build -m pwa
-        - run: cp -r dist/pwa/* $GITHUB_WORKSPACE
+        - run: quasar build
+        - run: cp -r dist/spa/* $GITHUB_WORKSPACE
         - name: rsync deployments
           uses: burnett01/rsync-deployments@6.0.0
           with:
