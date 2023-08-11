@@ -26,6 +26,7 @@ jobs:
         - run: npm install -g @quasar/cli
         - run: npm install
         - run: quasar build
+        - run: rm -rf $GITHUB_WORKSPACE
         - run: ls $GITHUB_WORKSPACE
         - run: cp -r dist/spa/* $GITHUB_WORKSPACE
         - name: rsync deployments
