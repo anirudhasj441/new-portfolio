@@ -25,6 +25,7 @@ jobs:
             cache: 'npm'
         - run: npm install -g @quasar/cli
         - run: npm install
+        - run: rm -rf dist/*
         - run: quasar build
         - name: rsync deployments
           uses: burnett01/rsync-deployments@6.0.0
