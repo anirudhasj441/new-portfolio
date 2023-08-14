@@ -119,7 +119,7 @@
                 </div>
             </div>
             <!-- <div v-for="skill in frontend_skills" :key="skill.skill" class="text-h6">{{ skill.skill }}</div> -->
-            <CumstomFooter></CumstomFooter>
+            <CumstomFooter />
         </q-scroll-area>
     </q-page>
 </template>

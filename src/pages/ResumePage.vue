@@ -21,7 +21,31 @@ export default {
     },
     mixins: [
         createMetaMixin({
-            title: "Anirudha Jadhav: Resume"
+            title: "Anirudha Jadhav: Resume",
+            meta: {
+                description: {
+                    name: "discription",
+                    content: "Anirudha Jadhav Resume"
+                },
+                keywords: {
+                    name: "keywords",
+                    content: `
+                        Anirudha Jadhav resume,
+                        Web developer resume,
+                        full stack developer resume,
+                        coder resume, programmer resume,
+                        resume sample, resume example,
+                        Web developer resume example,
+                        full stack developer resume example,
+                        coder resume example,
+                        programmer resume example,
+                        Web developer resume sample,
+                        full stack developer resume sample,
+                        coder resume sample,
+                        programmer resume sample
+                    `
+                }
+            }
         })
     ],
     methods: {
