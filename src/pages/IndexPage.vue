@@ -119,12 +119,17 @@
                 </div>
             </div>
             <!-- <div v-for="skill in frontend_skills" :key="skill.skill" class="text-h6">{{ skill.skill }}</div> -->
+            <CumstomFooter></CumstomFooter>
         </q-scroll-area>
     </q-page>
 </template>
 <script>
 import { styleFunction } from '../stores/global-store';
+import CumstomFooter from '../components/CustomFooter.vue';
 export default {
+    components: {
+        CumstomFooter
+    },
     data() {
         return {
             bio: '',
