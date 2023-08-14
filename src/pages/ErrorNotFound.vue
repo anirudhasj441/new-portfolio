@@ -36,7 +36,7 @@ export default defineComponent({
             <q-card flat class="" :style="style_store.getHeightStyle">
                 <q-card-section class="fit text-center flex flex-center">
                     <div>
-                        <div class="" style="font-size: 30vh">
+                        <div class="" style="font-size: 25vh">
                             404
                         </div>
 
