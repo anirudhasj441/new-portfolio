@@ -11,6 +11,7 @@
 
 <script>
 import { styleFunction } from 'src/stores/global-store';
+import { createMetaMixin } from 'quasar';
 export default {
     data() {
         return {
@@ -18,6 +19,11 @@ export default {
             style_store: styleFunction(),
         }
     },
+    mixins: [
+        createMetaMixin({
+            title: "Anirudha Jadhav: Resume"
+        })
+    ],
     methods: {
         getProfile: function () {
             let url = "/api/get_profile/";

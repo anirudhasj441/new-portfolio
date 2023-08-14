@@ -126,10 +126,20 @@
 <script>
 import { styleFunction } from '../stores/global-store';
 import CumstomFooter from '../components/CustomFooter.vue';
+import { createMetaMixin } from 'quasar'
 export default {
     components: {
         CumstomFooter
     },
+    mixins: [
+        createMetaMixin({
+            title: "Anirudha Jadhav: Portfolio",
+            meta: {
+                description: { name: "description", content: "Anirudha Jadhav Web Developer" },
+                keywords: { name: "keywords", content: "Anirudha, Jadhav, Anirudha Jadhav, Web Developer, Programmer, portfolio, resume, python, html, css, javascript, python developer, javascript developer, vue, vue js, single page application" }
+            }
+        })
+    ],
     data() {
         return {
             bio: '',
@@ -210,12 +220,12 @@ export default {
     }
 }
 
-.q-card.project-card {
-    transition: transform 0.3s ease-in;
+// .q-card.project-card {
+//     transition: transform 0.3s ease-in;
 
-    &:hover {
-        transform: translateY(-20px);
-        z-index: 999;
-    }
-}
+//     &:hover {
+//         transform: translateY(-20px);
+//         z-index: 999;
+//     }
+// }
 </style>
