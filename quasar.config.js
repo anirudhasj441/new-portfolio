@@ -91,17 +91,24 @@ module.exports = configure(function (/* ctx */) {
             proxy: {
                 host: '0.0.0.0',
                 // port: '9000',
+                // '/api': {
+                //     target: 'http://127.0.0.1:5000',
+                //     changeOrigin: true,
+                //     rewrite: (path) => path.replace(/^\/api/, ''),
+                //     headers: "X-Frame-Options: ALLOW"
+                // },
+                // '/media': {
+                //     target: 'http://127.0.0.1:5000/media/',
+                //     changeOrigin: true,
+                //     // rewrite: (path) => path.replace(/^\/api/, '')
+                // }
                 '/api': {
-                    target: 'http://127.0.0.1:5000',
+                    target: 'https://fwn6je8hab.execute-api.ap-south-1.amazonaws.com',
+                    // target: 'http://127.0.0.1:3000',
                     changeOrigin: true,
                     rewrite: (path) => path.replace(/^\/api/, ''),
                     headers: "X-Frame-Options: ALLOW"
                 },
-                '/media': {
-                    target: 'http://127.0.0.1:5000/media/',
-                    changeOrigin: true,
-                    // rewrite: (path) => path.replace(/^\/api/, '')
-                }
             },
             // open: false // opens browser window automatically
         },

@@ -162,7 +162,7 @@ export default {
             return height_style
         },
         getProfile: function () {
-            let url = "/api/get_profile/";
+            let url = "/api/profile/Anirudha Jadhav";
             const xhr = new XMLHttpRequest();
             xhr.open("get", url);
             xhr.onload = () => {

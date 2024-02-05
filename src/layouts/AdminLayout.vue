@@ -6,7 +6,7 @@
                     <q-img src="/programmer.webp" style="width: 48px;" :ratio="1" />
                 </q-avatar>
                 <q-toolbar-title>
-                    CodingDevil
+                    Admin
                 </q-toolbar-title>
                 <q-btn v-if="$q.platform.is.mobile" flat dense round icon="menu" aria-label="Menu"
                     @click="leftDrawerOpen = !leftDrawerOpen" />
@@ -21,28 +21,28 @@
                 <q-card-section style="height: 100%" class="">
                     <q-scroll-area class="fit">
                         <q-list class="">
-                            <q-item clickable v-ripple class="" to="/" exact>
+                            <q-item clickable v-ripple class="" to="/admin" exact>
                                 <q-item-section class="col-auto">
                                     <q-icon name="home" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
                                 <q-item-section>
-                                    Home
+                                    Profile
                                 </q-item-section>
                             </q-item>
-                            <!-- <q-item clickable v-ripple class="" to="/projects" exact>
+                            <q-item clickable v-ripple class="" to="/projects" exact>
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/projects.png" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
                                 <q-item-section>
-                                    Projects
+                                    Skills
                                 </q-item-section>
-                            </q-item> -->
+                            </q-item>
                             <q-item clickable v-ripple class="" to="/resume">
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/cv.webp" style="font-size: 1.5rem;"></q-icon>
                                 </q-item-section>
                                 <q-item-section>
-                                    Resume
+                                    Projects
                                 </q-item-section>
                             </q-item>
                             <q-item-label header class="text-h6">
@@ -91,7 +91,6 @@
                 </q-card-section>
             </q-card>
         </q-drawer>
-
         <q-page-container>
             <router-view />
         </q-page-container>
@@ -99,14 +98,28 @@
 </template>
 
 <script>
+
+import { authStore } from 'stores/auth-store';
+const auth_store = authStore();
 export default {
     data() {
         return {
-            leftDrawerOpen: !this.$q.platform.is.mobile
+            // leftDrawerOpen: !this.$q.platform.is.mobile
+            // loggedIn: false
+            auth_store
         }
     },
+    computed: {
+        leftDrawerOpen() {
+            return !this.$q.platform.is.mobile && this.loggedIn
+        },
+        loggedIn() {
+            return this.auth_store.isLoggedIn;
+        }
+    }
 }
 </script>
+
 
 <style scoped lang="scss">
 .q-item {
