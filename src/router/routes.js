@@ -28,6 +28,14 @@ const routes = [
             {
                 path: '',
                 component: () => import('pages/AdminPage.vue')
+            },
+            {
+                path: 'edit_skills',
+                component: () => import('pages/EditSkillsPage.vue')
+            },
+            {
+                path: 'login',
+                component: () => import('pages/AdminLoginPage.vue')
             }
         ]
     }
