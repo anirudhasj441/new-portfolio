@@ -3,20 +3,24 @@
         <q-scroll-area class="q-pr-md full-height flex column" :class="$q.platform.is.mobile ? 'q-pl-md' : ''">
             <!-- <div class="q-mb-md">
             </div> -->
-            <iframe v-if="resume != ''" :src="'/api' + resume" class="full-width" :style="style_store.getHeightStyle"
+            <iframe v-if="resume != ''" :src="resume" class="full-width" :style="style_store.getHeightStyle"
                 style=""></iframe>
         </q-scroll-area>
     </q-page>
 </template>
 
 <script>
-import { styleFunction } from 'src/stores/global-store';
+import { styleFunction, backendStore } from 'src/stores/global-store';
 import { createMetaMixin } from 'quasar';
+
+const backend = backendStore();
+
 export default {
     data() {
         return {
             resume: '',
             style_store: styleFunction(),
+            backend
         }
     },
     mixins: [
@@ -50,7 +54,7 @@ export default {
     ],
     methods: {
         getProfile: function () {
-            let url = "/api/get_profile/";
+            let url = this.backend.getUrl + "/profile/Anirudha Jadhav";
             const xhr = new XMLHttpRequest();
             xhr.open("get", url);
             xhr.onload = () => {

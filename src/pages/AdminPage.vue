@@ -34,11 +34,12 @@
 </template>
 
 <script>
-import { styleFunction } from '../stores/global-store';
+import { styleFunction, backendStore } from '../stores/global-store';
 import { authStore } from 'stores/auth-store';
 
-
 const auth_store = authStore();
+const backend = backendStore();
+
 export default {
     components: {
 
@@ -56,11 +57,12 @@ export default {
             skills: [],
             projects: [],
             style_store: styleFunction(),
+            backend
         }
     },
     methods: {
         async getProfile() {
-            let url = '/api/profile/Anirudha Jadhav';
+            let url = this.backend.getUrl + '/profile/Anirudha Jadhav';
             let res = await fetch(url);
             let response = await res.json();
             let profile = response.data;
@@ -76,7 +78,7 @@ export default {
             console.log(response.data)
         },
         updateProfile() {
-            let url = '/api/profile/Anirudha Jadhav';
+            let url = this.backend.getUrl + '/profile/Anirudha Jadhav';
             let data = {
                 bio: this.bio,
                 contact: [

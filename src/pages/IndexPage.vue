@@ -27,7 +27,7 @@
                 <div class="row q-col-gutter-md">
                     <div class="col-xs-6 col-md-3" v-for="project in projects" :key="project.skill">
                         <q-card flat clickable class="project-card">
-                            <q-img :src="'/api' + project.img" style="width: 100%;" :ratio="16 / 9">
+                            <q-img :src="project.img" style="width: 100%;" :ratio="16 / 9">
 
                             </q-img>
                             <!-- <q-card-section class="text-center">
@@ -58,7 +58,7 @@
                     <div class="col-xs-6 col-md-3" v-for="skill in frontend_skills" :key="skill.skill">
                         <q-card flat>
                             <q-card-section class="text-center">
-                                <q-img :src="'/api' + skill.icon" style="width: 50px;" :ratio="1"></q-img>
+                                <q-img :src="skill.icon" style="width: 50px;" :ratio="1"></q-img>
                             </q-card-section>
                             <q-card-section>
                                 <div class="text-h6 text-center">{{ skill.skill }}</div>
@@ -75,7 +75,7 @@
                     <div class="col-xs-6 col-md-3" v-for="skill in backend_skills" :key="skill.skill">
                         <q-card flat>
                             <q-card-section class="text-center">
-                                <q-img :src="'/api' + skill.icon" style="width: 50px;" :ratio="1"></q-img>
+                                <q-img :src="skill.icon" style="width: 50px;" :ratio="1"></q-img>
                             </q-card-section>
                             <q-card-section>
                                 <div class="text-h6 text-center">{{ skill.skill }}</div>
@@ -92,7 +92,7 @@
                     <div class="col-xs-6 col-md-3" v-for="skill in database_skills" :key="skill.skill">
                         <q-card flat>
                             <q-card-section class="text-center">
-                                <q-img :src="'/api' + skill.icon" style="width: 50px;" :ratio="1"></q-img>
+                                <q-img :src="skill.icon" style="width: 50px;" :ratio="1"></q-img>
                             </q-card-section>
                             <q-card-section>
                                 <div class="text-h6 text-center">{{ skill.skill }}</div>
@@ -109,7 +109,7 @@
                     <div class="col-xs-6 col-md-3" v-for="skill in other_skills" :key="skill.skill">
                         <q-card flat>
                             <q-card-section class="text-center">
-                                <q-img :src="'/api' + skill.icon" style="width: 50px;" :ratio="1"></q-img>
+                                <q-img :src="skill.icon" style="width: 50px;" :ratio="1"></q-img>
                             </q-card-section>
                             <q-card-section>
                                 <div class="text-h6 text-center">{{ skill.skill }}</div>
@@ -124,9 +124,12 @@
     </q-page>
 </template>
 <script>
-import { styleFunction } from '../stores/global-store';
+import { styleFunction, backendStore } from '../stores/global-store';
 import CumstomFooter from '../components/CustomFooter.vue';
 import { createMetaMixin } from 'quasar'
+
+const backend = backendStore();
+
 export default {
     components: {
         CumstomFooter
@@ -150,7 +153,8 @@ export default {
             other_skills: [],
             projects: [],
             style_store: styleFunction(),
-            height_style: null
+            height_style: null,
+            backend
         }
     },
     methods: {
@@ -162,7 +166,7 @@ export default {
             return height_style
         },
         getProfile: function () {
-            let url = "/api/profile/Anirudha Jadhav";
+            let url = this.backend.getUrl + "/profile/Anirudha Jadhav";
             const xhr = new XMLHttpRequest();
             xhr.open("get", url);
             xhr.onload = () => {
@@ -191,7 +195,7 @@ export default {
             xhr.send();
         },
         getProjects: function () {
-            let url = "/api/get_projects/";
+            let url = this.backend.getUrl + "/profile/get_projects/Anirudha Jadhav";
             const xhr = new XMLHttpRequest();
             xhr.open("get", url);
             xhr.onload = () => {
@@ -204,7 +208,7 @@ export default {
     },
     mounted() {
         this.getProfile();
-        this.getProjects();
+        // this.getProjects();
     }
 }
 

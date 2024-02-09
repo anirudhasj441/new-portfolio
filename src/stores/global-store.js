@@ -23,3 +23,12 @@ export const styleFunction = defineStore('styleFunction', {
         },
     },
 });
+
+export const backendStore = defineStore('backend', {
+    state: () => ({
+        url: 'https://fwn6je8hab.execute-api.ap-south-1.amazonaws.com'
+    }),
+    getters: {
+        getUrl: (state) => state.url
+    }
+})

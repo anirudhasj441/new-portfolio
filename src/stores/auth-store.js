@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { backendStore } from "./global-store";
 
 export const authStore = defineStore('auth', {
     state: () => ({
@@ -11,8 +12,9 @@ export const authStore = defineStore('auth', {
     },
     actions: {
         login(username, password) {
+            const backend = backendStore();
             return new Promise(resolve => {
-                let url = '/api/auth/login';
+                let url = backend.getUrl + '/auth/login';
                 let data = {
                     username: username,
                     password: password
@@ -22,7 +24,7 @@ export const authStore = defineStore('auth', {
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.onload = () => {
                     let response = JSON.parse(xhr.response);
-                    if (xhr.status == 200) {
+                    if (response.token) {
                         sessionStorage.setItem('token', response.token)
                         this.token = response.token;
                         this.isLoggedIn = true;
