@@ -60,13 +60,24 @@ export default {
             xhr.onload = () => {
                 let response = JSON.parse(xhr.response);
                 console.log(response);
-                this.resume = response.data.resume;
+                // this.resume = response.data.resume;
             }
             xhr.send();
         },
+        async getResume() {
+            let url = this.backend.getUrl + '/upload/resume/get_url/Anirudha Jadhav';
+
+            let res = await fetch(url);
+            let response = await res.json();
+            console.log('resume response::: ', response.url)
+
+            // if (res.status != 200) return '';
+            return response.url;
+        }
     },
-    mounted() {
+    async mounted() {
         this.getProfile();
+        this.resume = await this.getResume();
     }
 }
 </script>

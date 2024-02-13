@@ -29,6 +29,14 @@
                                     Profile
                                 </q-item-section>
                             </q-item>
+                            <q-item clickable v-ripple class="" to="/admin/upload_resume" exact>
+                                <q-item-section class="col-auto">
+                                    <q-icon name="img:/cv.webp" style="font-size: 1.5rem;"></q-icon>
+                                </q-item-section>
+                                <q-item-section>
+                                    Resume
+                                </q-item-section>
+                            </q-item>
                             <q-item clickable v-ripple class="" to="/admin/edit_skills" exact>
                                 <q-item-section class="col-auto">
                                     <q-icon name="img:/projects.png" style="font-size: 1.5rem;"></q-icon>

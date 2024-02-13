@@ -1,5 +1,5 @@
 <template>
-    <q-page class="fixed-top flex flex-center" style="width: 100vw; height: 100svh;">
+    <q-page class="fixed-top flex flex-center q-pa-md" style="width: 100vw; height: 100svh;">
         <q-dialog v-model="logedInFailed" position="top">
             <q-banner class="bg-red text-white">
                 Logged In Failed: {{ msg }}

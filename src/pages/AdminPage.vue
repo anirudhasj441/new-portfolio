@@ -1,6 +1,6 @@
 <template>
     <q-page class="q-pb-md" :style-fn="style_store.setStyle">
-        <q-scroll-area class="fit q-px-md">
+        <q-scroll-area class="fit q-pr-md" :class="$q.platform.is.mobile ? 'q-pl-md' : ''">
             <q-card flat class="full-width q-mb-lg">
                 <q-card-section>
                     <div class="text-h6 text-center">Edit Profile</div>
@@ -19,10 +19,6 @@
                     <q-input v-model="whatsapp" label="WhatsApp" outlined></q-input>
                     <q-input v-model="insta" label="Instagram" outlined></q-input>
 
-                </q-card-section>
-                <q-card-section>
-                    <div class="text-h6">Resume</div>
-                    <q-uploader flat bordered color="grey-8" class="full-width"></q-uploader>
                 </q-card-section>
             </q-card>
             <div class="text-right">

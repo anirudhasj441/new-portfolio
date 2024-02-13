@@ -7,40 +7,31 @@
                 </q-card-section>
                 <q-card-section>
                     <div class="row q-col-gutter-lg">
-                        <div class="col-12 col-md-4">
-                            <q-card square class="full-width" style="background-color: transparent;">
-                                <q-img src="/projects.png" style="height: 8rem;" ratio="1"></q-img>
+                        <div v-for="skill in skills" :key="skill._id" class="col-12 col-md-4">
+                            <q-card square class="full-width" style="background-color: transparent">
+                                <q-card-section align="center">
+                                    <q-icon name="img:/projects.png" size="80px"></q-icon>
+                                    <q-btn flat icon="edit" color="white" class="absolute-bottom-right"
+                                        @click="openUploadSkillIconDialog(skill)"></q-btn>
+                                </q-card-section>
                                 <q-card-section class="bg-white">
-                                    <div class="text-h6 text-bold text-primary">Skill 1</div>
+                                    <div class="text-h6 text-bold text-primary">{{ skill.skill }}</div>
                                 </q-card-section>
                                 <q-card-section class="bg-white q-py-none">
-                                    <div class="text-h6 text-dark">Backend</div>
+                                    <div class="text-h6 text-dark">{{ skill.category ? skill.category : 'Other' }}</div>
                                 </q-card-section>
                                 <q-card-actions align="right" class="bg-white">
-                                    <q-btn dense unelevated icon="edit" color="primary"></q-btn>
-                                    <q-btn dense unelevated icon="delete" color="red"></q-btn>
-                                </q-card-actions>
-                            </q-card>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <q-card square class="full-width" style="background-color: transparent;">
-                                <q-img src="/projects.png" style="height: 8rem;" ratio="1"></q-img>
-                                <q-card-section class="bg-white">
-                                    <div class="text-h6 text-bold text-primary">Skill 1</div>
-                                </q-card-section>
-                                <q-card-section class="bg-white q-py-none">
-                                    <div class="text-h6 text-dark">Backend</div>
-                                </q-card-section>
-                                <q-card-actions align="right" class="bg-white">
-                                    <q-btn dense unelevated icon="edit" color="primary"></q-btn>
-                                    <q-btn dense unelevated icon="delete" color="red"></q-btn>
+                                    <q-btn dense unelevated icon="edit" color="primary"
+                                        @click="openEditSkillForm(skill)"></q-btn>
+                                    <q-btn dense unelevated icon="delete" color="red"
+                                        @click="deleteSkill(skill._id)"></q-btn>
                                 </q-card-actions>
                             </q-card>
                         </div>
                         <div class="col-12 col-md-4">
                             <q-btn id="add-skill" flat color="primary" size="100%" class="fit"
-                                @click="addSkillDialog = true">
-                                <q-icon name="sym_o_add_box" color="white" size="100px"></q-icon>
+                                @click="addSkillDialog = true" style="border: dashed 3px white;">
+                                <q-icon name="add" color="white" size="100px"></q-icon>
                             </q-btn>
                         </div>
                     </div>
@@ -48,36 +39,91 @@
             </q-card>
         </q-scroll-area>
         <q-dialog v-model="addSkillDialog">
-            <add-skill-form @closeDialog="addSkillDialog = false"></add-skill-form>
+            <add-skill-form @closeDialog="addSkillDialog = false" @added="onAdded"></add-skill-form>
+        </q-dialog>
+        <q-dialog v-model="editSkillDialog">
+            <edit-skill-form :skill-obj="editSkill" @closeDialog="editSkillDialog = false"
+                @edited="onEdited"></edit-skill-form>
+        </q-dialog>
+        <q-dialog v-model="uploadSkillIconDialog">
+            <upload-skill-icon :skill-obj="editSkill" @closeDialog="uploadSkillIconDialog = false"
+                @uploaded="onIconUploaded"></upload-skill-icon>
         </q-dialog>
     </q-page>
 </template>
 
 <script>
 import { styleFunction, backendStore } from '../stores/global-store';
+import { authStore } from 'src/stores/auth-store';
 import AddSkillForm from 'src/components/AddSkillForm.vue';
+import EditSkillForm from 'src/components/EditSkillForm.vue';
+import UploadSkillIcon from 'src/components/UploadSkillIcon.vue';
 
 const backend = backendStore();
+const auth_store = authStore();
 
 export default {
     components: {
-        AddSkillForm
+        AddSkillForm,
+        EditSkillForm,
+        UploadSkillIcon
     },
     data() {
         return {
+            skills: [],
+            editSkill: {},
             addSkillDialog: false,
+            editSkillDialog: false,
+            uploadSkillIconDialog: false,
             styleFunction: styleFunction(),
-            backend
+            backend,
+            auth_store
         }
     },
     methods: {
         async fetchSkills() {
-            let url = this.backend.getUrl + '/profile/skills/Anirudha Jadhav';
+            let url = this.backend.getUrl + '/profile/Anirudha Jadhav/skill';
 
             let res = await fetch(url);
             let response = await res.json();
 
+            this.skills = response.data;
+        },
+        onAdded(response) {
+            this.addSkillDialog = false;
+            this.fetchSkills();
             console.log(response);
+        },
+        onEdited(response) {
+            this.editSkillDialog = false;
+            this.fetchSkills();
+        },
+        onIconUploaded(response) {
+            this.uploadSkillIconDialog = false;
+            this.fetchSkills();
+        },
+        openEditSkillForm(skill) {
+            this.editSkill = skill;
+            this.editSkillDialog = true;
+        },
+        openUploadSkillIconDialog(skill) {
+            this.editSkill = skill;
+            this.uploadSkillIconDialog = true;
+        },
+        async deleteSkill(id) {
+            let url = this.backend.getUrl + '/profile/Anirudha Jadhav/skill/' + id;
+
+            let res = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + this.auth_store.getToken
+                }
+            })
+
+            let response = await res.json();
+
+            console.log(response);
+            this.fetchSkills();
         }
     },
     mounted() {
@@ -92,6 +138,8 @@ export default {
         i {
             color: $primary !important;
         }
+
+        border-color: $primary !important;
     }
 }
 </style>

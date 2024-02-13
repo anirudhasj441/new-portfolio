@@ -11,12 +11,8 @@
             <div class="text-right">
             </div>
         </q-card-section>
-        <q-card-section>
-            <div class="text-h6">Icon</div>
-            <q-uploader color="grey-8" class="full-width"></q-uploader>
-        </q-card-section>
         <q-card-section class="q-pb-md q-pt-sm">
-            <q-btn icon="add" color="grey-9" class="full-width" @click="addSkill" />
+            <q-btn label="update" color="grey-9" class="full-width" @click="editSkill" />
         </q-card-section>
     </q-card>
 </template>
@@ -27,39 +23,52 @@ import { authStore } from 'src/stores/auth-store';
 
 const backend = backendStore();
 const auth_store = authStore();
+
 export default {
+    props: {
+        skillObj: {
+            type: Object,
+            required: true
+        }
+    },
     data() {
         return {
-            skill: '',
-            category: '',
+            skill: this.skillObj.skill,
+            category: this.skillObj.category,
             icon: '',
             backend,
             auth_store
         }
     },
     methods: {
-        async addSkill() {
+        async editSkill() {
             let response = await new Promise(resolve => {
-                let url = this.backend.getUrl + '/profile/Anirudha Jadhav/skill';
+
+                let url = this.backend.getUrl + '/profile/Anirudha Jadhav/skill/' + this.skillObj._id;
+                console.log(url)
                 let data = {
                     skill: this.skill,
                     category: this.category
                 }
+
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', url);
+
+                xhr.open('PATCH', url);
 
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.setRequestHeader('Authorization', 'Bearer ' + this.auth_store.getToken);
 
                 xhr.onload = () => {
                     let response = JSON.parse(xhr.response);
-                    // console.log(response);
-                    resolve(response)
+
+                    resolve(response);
                 }
 
                 xhr.send(JSON.stringify(data))
+
             })
-            this.$emit('added', response)
+
+            this.$emit('edited', response);
         }
     }
 }

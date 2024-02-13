@@ -34,6 +34,10 @@ const routes = [
                 component: () => import('pages/EditSkillsPage.vue')
             },
             {
+                path: 'upload_resume',
+                component: () => import('pages/UploadResumePage.vue')
+            },
+            {
                 path: 'login',
                 component: () => import('pages/AdminLoginPage.vue')
             }
