@@ -6,7 +6,8 @@
             <q-btn flat icon="close" @click="$emit('closeDialog')"></q-btn>
         </q-card-section>
         <q-card-section>
-            <q-uploader flat bordered color="grey-8" method="PUT" send-raw :multiple="false" accept="image/*"
+            <q-uploader flat bordered color="grey-8" method="PUT" send-raw
+                :headers="[{ name: 'Content-Type', value: 'image/svg+xml' }]" :multiple="false" accept="image/*"
                 :factory="upload" class="full-width" @uploaded="onUploaded"></q-uploader>
         </q-card-section>
     </q-card>
@@ -71,8 +72,7 @@ export default {
                 let url = this.backend.getUrl + '/profile/Anirudha Jadhav/skill/' + this.skillObj._id;
                 console.log(url)
                 let data = {
-                    skill: this.skill,
-                    category: this.category
+                    icon: '/' + this.skill_icon
                 }
 
                 const xhr = new XMLHttpRequest();
