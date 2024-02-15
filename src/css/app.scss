@@ -14,3 +14,9 @@ iframe {
     border: none;
     outline: none;
 }
+
+.skills-container {
+    .q-scrollarea__content {
+        width: 100% !important;
+    }
+}

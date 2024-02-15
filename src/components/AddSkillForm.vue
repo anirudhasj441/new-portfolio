@@ -11,10 +11,6 @@
             <div class="text-right">
             </div>
         </q-card-section>
-        <q-card-section>
-            <div class="text-h6">Icon</div>
-            <q-uploader color="grey-8" class="full-width"></q-uploader>
-        </q-card-section>
         <q-card-section class="q-pb-md q-pt-sm">
             <q-btn icon="add" color="grey-9" class="full-width" @click="addSkill" />
         </q-card-section>

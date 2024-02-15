@@ -8,6 +8,15 @@
                             <div class="info">
                                 <div class="" style="font-size: 1rem;">Hello I am,</div>
                                 <div class="text-h2 text-bold text-primary">Anirudha Jadhav</div>
+                                <div v-if="!bio" class="bio">
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text"></q-skeleton>
+                                    <q-skeleton type="text" width="50%"></q-skeleton>
+                                </div>
                                 <div class="bio">
                                     {{ bio }}
                                 </div>
@@ -152,6 +161,7 @@ export default {
             database_skills: [],
             other_skills: [],
             projects: [],
+            profileFetched: false,
             style_store: styleFunction(),
             height_style: null,
             backend
@@ -190,7 +200,7 @@ export default {
                             break;
                     }
                 });
-
+                this.profileFetched = true;
             }
             xhr.send();
         },
