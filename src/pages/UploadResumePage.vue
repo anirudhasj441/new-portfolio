@@ -8,7 +8,8 @@
                     </q-card-section>
                     <q-card-section>
                         <q-uploader :factory="resumeUpload" method="PUT" send-raw flat bordered :multiple="false"
-                            accept=".pdf" color="grey-8" class="full-width"></q-uploader>
+                            :headers="[{ name: 'Content-Type', value: 'application/pdf' }]" accept=".pdf" color="grey-8"
+                            class="full-width" @uploaded="onUploaded"></q-uploader>
                     </q-card-section>
                 </q-card>
             </div>
@@ -29,7 +30,8 @@ export default {
         return {
             style_store,
             auth_store,
-            backend
+            backend,
+            resume_url: ''
         }
     },
     methods: {
@@ -43,8 +45,28 @@ export default {
             console.log(res.status);
             console.log(response);
             let uploadUrl = response.url
-
+            this.resume_url = response.resume_url;
             return { url: uploadUrl };
+        },
+        async onUploaded() {
+            let url = this.backend.getUrl + '/profile/Anirudha Jadhav';
+            let data = {
+                resume: '/' + this.resume_url
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('PATCH', url);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Authorization', `Bearer ${this.token}`);
+            xhr.onload = () => {
+                let response = JSON.parse(xhr.response);
+                console.log(response);
+            }
+            xhr.send(JSON.stringify(data))
+        }
+    },
+    computed: {
+        token() {
+            return this.auth_store.getToken
         }
     }
 }

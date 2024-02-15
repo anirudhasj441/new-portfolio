@@ -10,7 +10,8 @@
                         <div v-for="skill in skills" :key="skill._id" class="col-12 col-md-4">
                             <q-card square class="full-width" style="background-color: transparent">
                                 <q-card-section align="center">
-                                    <q-icon name="img:/projects.png" size="80px"></q-icon>
+                                    <q-icon :name="`img:${!skill.icon ? '/projects.png' : skill.icon}`"
+                                        size="80px"></q-icon>
                                     <q-btn flat icon="edit" color="white" class="absolute-bottom-right"
                                         @click="openUploadSkillIconDialog(skill)"></q-btn>
                                 </q-card-section>

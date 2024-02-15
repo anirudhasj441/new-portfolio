@@ -60,7 +60,7 @@ export default {
             xhr.onload = () => {
                 let response = JSON.parse(xhr.response);
                 console.log(response);
-                // this.resume = response.data.resume;
+                this.resume = response.data.resume;
             }
             xhr.send();
         },
@@ -77,7 +77,7 @@ export default {
     },
     async mounted() {
         this.getProfile();
-        this.resume = await this.getResume();
+        // this.resume = await this.getResume();
     }
 }
 </script>
