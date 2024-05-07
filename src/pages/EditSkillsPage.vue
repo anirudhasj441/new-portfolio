@@ -8,7 +8,7 @@
                         <div class="text-h6 text-center">Skills</div>
                     </q-card-section>
                     <q-card-section>
-                        <div v-if="skills.length == 0" class="row q-col-gutter-lg">
+                        <div v-if="!skillsLoaded" class="row q-col-gutter-lg">
                             <div v-for="i in 3" :key="i" class="col-12 col-md-4">
                                 <q-card square class="full-width" style="background-color: transparent">
                                     <q-card-section align="center" class="q-pa-none">
@@ -106,6 +106,7 @@ export default {
         return {
             skills: [],
             editSkill: {},
+            skillsLoaded: false,
             addSkillDialog: false,
             editSkillDialog: false,
             uploadSkillIconDialog: false,
@@ -122,6 +123,7 @@ export default {
             let response = await res.json();
 
             this.skills = response.data;
+            this.skillsLoaded = true;
         },
         onAdded(response) {
             this.addSkillDialog = false;

@@ -22,13 +22,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 flex flex-center" :class="$q.platform.is.mobile ? 'order-first' : ''"
-                            :style="style_store.getHeightStyle">
+                        <div class="col-xs-12 col-md-6 flex flex-center"
+                            :class="$q.platform.is.mobile ? 'order-first' : ''" :style="style_store.getHeightStyle">
                             <q-img src="/banner_image.svg" style="width: 100%;" :ratio="1"></q-img>
                         </div>
                     </div>
                 </q-card-section>
             </q-card>
+
+            <!-- github stats -->
+            <div class="text-h5 text-bold q-my-md q-mt-lg">Github stats</div>
+            <git-hub-stats class="q-my-md" />
+
 
             <!-- projects section -->
             <div v-if="projects.length > 0">
@@ -45,8 +50,8 @@
                                 <div class=" flex items-center justify-between q-gutter-x-sm no-wrap">
                                     <div class="text-h6">{{ project.title }}</div>
                                     <q-space></q-space>
-                                    <a v-if="project.git_repo" :href="project.git_repo" class="project-link" target="_blank"
-                                        rel="noopener noreferrer">
+                                    <a v-if="project.git_repo" :href="project.git_repo" class="project-link"
+                                        target="_blank" rel="noopener noreferrer">
                                         <q-icon name="bi-github" style="font-size: 1.5rem;"></q-icon>
                                     </a>
                                     <a v-if="project.link" :href="project.link" class="project-link" target="_blank"
@@ -135,13 +140,16 @@
 <script>
 import { styleFunction, backendStore } from '../stores/global-store';
 import CumstomFooter from '../components/CustomFooter.vue';
+import GitHubStats from '../components/GitHubStats.vue'
 import { createMetaMixin } from 'quasar'
+
 
 const backend = backendStore();
 
 export default {
     components: {
-        CumstomFooter
+        CumstomFooter,
+        GitHubStats
     },
     mixins: [
         createMetaMixin({
@@ -241,5 +249,4 @@ export default {
 //         transform: translateY(-20px);
 //         z-index: 999;
 //     }
-// }
-</style>
+// }</style>
